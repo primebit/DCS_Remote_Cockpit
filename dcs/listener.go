@@ -4,7 +4,6 @@ import (
 	"log"
 	"net"
 	"bufio"
-	//"strings"
 	"sync"
 )
 
@@ -29,10 +28,10 @@ func ListenPort(port int, handleFunc MassageHandler) {
 	} else {
 		log.Println("Opened port 9514")
 	}
-	// accept connection on port
 
 	// run loop forever (or until ctrl-c)
 	for {
+		// accept connection on port
 		conn, err := ln.Accept()
 		if err != nil {
 			log.Fatal(err)

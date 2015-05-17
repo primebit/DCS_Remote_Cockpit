@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,700italic,400italic&subset=latin,cyrillic-ext,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Roboto&subset=cyrillic-ext);
 
 html, body {
     width: 100%;
@@ -6,8 +6,29 @@ html, body {
 }
 
 body {
-    background: url('../img/bg_pattern.jpg') left top !important;
-    font-family: "PT Sans";
+    background: #5c5c5c url('../img/bg_pattern.jpg') left top !important;
+    font-family: "Roboto";
+}
+
+body > .container {
+    height: 100%;
+    padding-bottom: 30px;
+}
+
+footer {
+    height: 30px;
+    margin-top: -30px;
+    line-height: 30px;
+    color: #acacac;
+}
+
+footer a {
+    color: #accc74;
+}
+
+footer a:hover {
+    color: #accc74;
+    text-decoration: underline;
 }
 
 .time-counter {
@@ -20,33 +41,56 @@ body {
 .devices .device {
     margin-top: 15px;
     background: #2c2c2c;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
     border: 2px solid #444;
     height: 150px;
-    padding: 5px 10px;
 }
 
-.devices .device h3 {
-    font-size: 20px;
+.devices .device > h3 {
+    display: block;
+
+    height: 30px;
+    font-size: 14px;
     line-height: 20px;
     margin: 0;
-    color: #757680;
+    padding: 5px 10px;
+
+    color: #62626b;
+    background: #3c3c3c;
 }
 
-.devices .device div {
-    padding-top: 20px;
-    text-align: center;
-    color: #accc74;
+.devices .device > div {
+    height: 120px;
     font-size: 72px;
     line-height: 74px;
+    padding-top: 20px;
+    text-align: center;
+
+    color: #accc74;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.5);
 }
 
-.devices .title {
-    font-size: 22px;
-    color: #000080;
+.devices .device > div div {
+    font-size: 36px;
+    line-height: 36px;
+    padding-left: 10px;
 }
 
-.devices .indicator {
-    font-size: 40px;
-    color: #2b542c;
+.devices .device > div div i {
+    padding-left: 10px;
+    font-style: normal;
+    font-size: 20px;
+    color: #515151;
+}
+
+.devices .device.disabled {
+    background: #494949;
+}
+
+.devices .device.disabled h3 {
+    color: #494949;
+}
+
+.devices .device.disabled div {
+    color: #808080;
 }

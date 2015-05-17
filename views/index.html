@@ -28,7 +28,7 @@
 
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="device">
-                    <h3>Скорость (км/ч)</h3>
+                    <h3>Скорость путевая (км/ч)</h3>
                     <div id="speedTrue">--</div>
                 </div>
             </div>
@@ -64,6 +64,16 @@
             <div class="col-md-offset-9 col-md-3 time-counter">Время сервера: <span id="time">0</span></div>
         </div>
     </div>
+    <footer>
+        <div class="container">
+            <div class="pull-left">
+                Специально для <a href="https://vk.com/club87978198" target="_blank">Виртуальных Пилотов Гражданской Авиации</a>
+            </div>
+            <div class="pull-right">
+                by <a href="https://vk.com/primebit" target="_blank">Primebit</a>
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript">
         $(document).ready(function(){
             var ws = $.websocket("ws://" + window.location.host + "/socket", {

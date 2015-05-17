@@ -10,6 +10,24 @@ body {
     font-family: "Roboto";
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 20px;
+    color: #acacac;
+}
+
+footer a {
+    color: #accc74;
+}
+
+footer a:hover {
+    color: #accc74;
+    text-decoration: underline;
+}
+
 .time-counter {
     text-align: right;
     font-size: 10px;

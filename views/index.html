@@ -21,51 +21,42 @@
         <div class="row devices">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="device">
-                    <h3>V<sub>прибор</sub></h3>
-                    <div id="speedInstrumental">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>H<sub>рад</sub></h3>
-                    <div id="altRad">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>V<sub>верт</sub></h3>
-                    <div id="vspeed">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>Широта</h3>
-                    <div id="lat">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>V<sub>ист</sub></h3>
-                    <div id="speedTrue">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>H<sub>бар</sub></h3>
-                    <div id="altBar">0</div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                <div class="device">
-                    <h3>Курс</h3>
-                    <div id="heading">0</div>
+                    <h3>Высота (м)</h3>
+                    <div id="altRad">--</div>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                 <div class="device">
-                    <h3>Долгота</h3>
-                    <div id="long">0</div>
+                    <h3>Скорость путевая (км/ч)</h3>
+                    <div id="speedTrue">--</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="device">
+                    <h3>Курс (град)</h3>
+                    <div id="heading">--</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="device">
+                    <h3>Координаты</h3>
+                    <div>
+                        <div><span id="lat">--</span><sup>o</sup><i>N</i></div>
+                        <div><span id="long">--</span><sup>o</sup><i>E</i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="device disabled">
+                    <h3>Приборная скорость</h3>
+                    <div id="speedInstrumental">--</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="device disabled">
+                    <h3>Вертикальная скорость</h3>
+                    <div id="vspeed">--</div>
                 </div>
             </div>
         </div>
@@ -73,6 +64,16 @@
             <div class="col-md-offset-9 col-md-3 time-counter">Время сервера: <span id="time">0</span></div>
         </div>
     </div>
+    <footer>
+        <div class="container">
+            <div class="pull-left">
+                Специально для <a href="https://vk.com/club87978198" target="_blank">Виртуальных Пилотов Гражданской Авиации</a>
+            </div>
+            <div class="pull-right">
+                by <a href="https://vk.com/primebit" target="_blank">Primebit</a>
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript">
         $(document).ready(function(){
             var ws = $.websocket("ws://" + window.location.host + "/socket", {
@@ -85,7 +86,6 @@
                         $("#speedTrue").html(msSpeedToKms(parseFloat(data.speedTrue)).toFixed(1));
                         $("#speedInstrumental").html(msSpeedToKms(parseFloat(data.speedInstrumental)).toFixed());
                         $("#vspeed").html(data.vspeed);
-                        $("#altBar").html(parseFloat(data.altBar).toFixed());
                         $("#altRad").html(parseFloat(data.alrRad).toFixed(1));
                         $("#heading").html(parseFloat(RadToDeg(data.navigation.heading)).toFixed(2));
                         $("#lat").html(parseFloat(data.navigation.lat).toFixed(2));

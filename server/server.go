@@ -53,7 +53,6 @@ func DataSocket(ws *websocket.Conn) {
 	errChan:= make(chan bool, 1)
 	for message := range queue {
 		if(len(doneChan) > 0) {
-			log.Println("Worker #",  queueId," busy, skip this message")
 			continue
 		}
 

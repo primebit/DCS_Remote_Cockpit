@@ -49,20 +49,38 @@ func DataSocket(ws *websocket.Conn) {
 
 	log.Println("New websocket connection #", queueId)
 
+	doneChan := make(chan bool, 1)
+	errChan:= make(chan bool, 1)
 	for message := range queue {
-		_, err := ws.Write([]byte("{\"type\":\"update\", \"data\":" + message + "}"))
-		if err != nil {
-			deleteQueue(queueId)
-			log.Println("Websocket transmit error, connection closed #", queueId)
-			break
-		} else {
-			response := make([]byte, 10)
-			n, err := ws.Read(response)
-			if err != nil || n != 2 {
+		if(len(doneChan) > 0) {
+			log.Println("Worker #",  queueId," busy, skip this message")
+			continue
+		}
+
+		doneChan <- true
+		go func(message string, ws *websocket.Conn, doneChan chan bool, errChan chan bool) {
+			_, err := ws.Write([]byte("{\"type\":\"update\", \"data\":" + message + "}"))
+			if err != nil {
 				deleteQueue(queueId)
-				log.Println("Websocket confirm receive error, connection closed #", queueId)
-				break
+				log.Println("Websocket transmit error, connection closed #", queueId)
+				errChan <- true
+				return
+
+			} else {
+				response := make([]byte, 10)
+				n, err := ws.Read(response)
+				if err != nil || n != 2 {
+					deleteQueue(queueId)
+					log.Println("Websocket confirm receive error, connection closed #", queueId)
+					errChan <- true
+					return
+				}
 			}
+			<- doneChan
+		}(message, ws, doneChan, errChan)
+
+		if len(errChan) > 0 {
+			break
 		}
 	}
 	ws.Close()
